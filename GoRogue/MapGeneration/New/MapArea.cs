@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Troschuetz.Random;
 
-namespace GoRogue.MapGeneration
+namespace GoRogue.MapGeneration.New
 {
 	/// <summary>
 	/// Represents an arbitrarily-shaped area of a map. Stores and provides access to a list of each
 	/// unique position considered connected.
 	/// </summary>
-	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public class MapArea : IReadOnlyMapArea
 	{
 		private readonly HashSet<Coord> positionsSet;

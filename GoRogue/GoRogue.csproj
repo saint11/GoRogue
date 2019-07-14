@@ -68,6 +68,9 @@
     <PackageReference Include="OptimizedPriorityQueue" Version="4.2.0" />
     <PackageReference Include="Troschuetz.Random" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MapGeneration\New\Generators\" />
+  </ItemGroup>
   
   <!-- Run InheritDoc on the final builds.  This isn't used right now becuase of bugs with docfx and inheriting docs from template classes, but may be in the future -->
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

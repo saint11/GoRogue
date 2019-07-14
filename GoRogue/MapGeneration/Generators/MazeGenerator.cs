@@ -1,5 +1,6 @@
 ﻿using GoRogue.MapViews;
 using GoRogue.Random;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,6 +11,7 @@ namespace GoRogue.MapGeneration.Generators
 	/// <summary>
 	/// Generates a maze, and adds it to the given map.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public static class MazeGenerator
 	{
 		/// <summary>

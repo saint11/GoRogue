@@ -1,4 +1,5 @@
 ﻿using GoRogue.MapViews;
+using System;
 
 namespace GoRogue.MapGeneration.Connectors
 {
@@ -8,6 +9,7 @@ namespace GoRogue.MapGeneration.Connectors
 	/// <see cref="Lines.Algorithm.ORTHO"/> algorithm.  Otherwise, the line is calculated using
 	/// <see cref="Lines.Algorithm.BRESENHAM"/>.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public class DirectLineTunnelCreator : ITunnelCreator
 	{
 		private AdjacencyRule adjacencyRule;

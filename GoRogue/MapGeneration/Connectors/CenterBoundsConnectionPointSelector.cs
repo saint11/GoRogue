@@ -8,6 +8,7 @@ namespace GoRogue.MapGeneration.Connectors
 	/// MapArea's walkable tiles, connecting these two points is not guaranteed to actually connect
 	/// the entirety of the two areas.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public class CenterBoundsConnectionPointSelector : IAreaConnectionPointSelector
 	{
 		/// <summary>

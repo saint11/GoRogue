@@ -1,4 +1,4 @@
-﻿using GoRogue.MapGeneration;
+﻿using GoRogue.MapGeneration.New;
 using GoRogue.Random;
 using System;
 using System.Collections.Generic;

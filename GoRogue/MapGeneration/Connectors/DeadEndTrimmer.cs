@@ -2,6 +2,7 @@
 using GoRogue.MapViews;
 using GoRogue.Random;
 using Troschuetz.Random;
+using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -10,6 +11,7 @@ namespace GoRogue.MapGeneration.Connectors
 	/// <summary>
 	/// Implements an algorithm that will prune small dead-end locations (locations surrounded by 3 walls), from a map/list of map areas.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public static class DeadEndTrimmer
 	{
 		/// <summary>

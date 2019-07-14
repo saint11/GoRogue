@@ -1,4 +1,5 @@
 ﻿using GoRogue.MapViews;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +16,7 @@ namespace GoRogue.MapGeneration.Connectors
 	/// center point of the bounding boxes of those areas. Points to connect two areas, as well as method used to create
 	/// a tunnel between those two points, are selected via specified parameters.
 	/// </remarks>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	static public class ClosestMapAreaConnector
 	{
 		/// <summary>

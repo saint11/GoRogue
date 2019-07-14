@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using Troschuetz.Random;
 
-namespace GoRogue.MapGeneration
+namespace GoRogue.MapGeneration.New
 {
 	/// <summary>
 	/// Read-only interface for an arbitrarily-shaped area of the map.
 	/// </summary>
-	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public interface IReadOnlyMapArea
 	{
 		/// <summary>

@@ -1,5 +1,6 @@
 ﻿using GoRogue.MapViews;
 using GoRogue.Random;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Troschuetz.Random;
@@ -10,6 +11,7 @@ namespace GoRogue.MapGeneration.Connectors
 	/// Same as <see cref="ClosestMapAreaConnector"/>, but connects random rooms instead of determining the closest
 	/// one, or connects rooms in the order specified if you give it a list of areas.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	static public class OrderedMapAreaConnector
 	{
 		/// <summary>

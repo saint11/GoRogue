@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GoRogue.MapGeneration
+namespace GoRogue.MapGeneration.New
 {
 	/// <summary>
 	/// Class designed to calculate and produce a list of MapAreas representing each unique connected
@@ -14,7 +14,6 @@ namespace GoRogue.MapGeneration
 	/// classic roguelike dungeon example, this might be a walkability map where floors return a
 	/// value of true and walls a value of false.
 	/// </remarks>
-	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public class MapAreaFinder
 	{
 		/// <summary>

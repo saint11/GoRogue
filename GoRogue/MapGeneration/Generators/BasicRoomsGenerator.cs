@@ -1,5 +1,6 @@
 ﻿using GoRogue.MapViews;
 using GoRogue.Random;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Troschuetz.Random;
@@ -14,6 +15,7 @@ namespace GoRogue.MapGeneration.Generators
 	/// <see cref="QuickGenerators.GenerateRandomRoomsMap(ISettableMapView{bool}, int, int, int, int)"/>
 	/// and overloads.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public static class BasicRoomsGenerator
 	{
 		/// <summary>

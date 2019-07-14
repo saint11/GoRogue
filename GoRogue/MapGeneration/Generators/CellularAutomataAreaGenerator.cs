@@ -21,6 +21,7 @@ namespace GoRogue.MapGeneration.Generators
 	/// It is guaranteed that the "set" function of the map passed in will only be
 	/// called once per tile.
 	/// </remarks>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public static class CellularAutomataAreaGenerator
 	{
 		/// <summary>

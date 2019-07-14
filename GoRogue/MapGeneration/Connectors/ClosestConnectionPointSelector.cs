@@ -6,6 +6,7 @@ namespace GoRogue.MapGeneration.Connectors
 	/// Point selector that selects the two points from the <see cref="MapArea"/> instances that are closest to each other,
 	/// according to the given distance calculation.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public class ClosestConnectionPointSelector : IAreaConnectionPointSelector
 	{
 		/// <summary>

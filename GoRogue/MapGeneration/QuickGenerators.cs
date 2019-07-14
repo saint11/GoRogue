@@ -1,5 +1,6 @@
 ﻿using GoRogue.MapViews;
 using GoRogue.Random;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Troschuetz.Random;
@@ -11,6 +12,7 @@ namespace GoRogue.MapGeneration
 	/// quickly and easily generate a given type of map in a single function call. The implementation
 	/// of these functions may also be used as the basis for implementing more customized generation processes.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public static class QuickGenerators
 	{
 		/// <summary>

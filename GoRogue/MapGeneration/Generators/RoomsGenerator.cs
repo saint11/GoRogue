@@ -13,6 +13,7 @@ namespace GoRogue.MapGeneration.Generators
 	/// <see cref="QuickGenerators.GenerateDungeonMazeMap(ISettableMapView{bool}, int, int, int, int, float, float, int, int, int, int, int, int, int, int, int)"/>
 	/// and overloads.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	static public class RoomsGenerator
 	{
 		/// <summary>

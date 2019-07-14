@@ -2,7 +2,6 @@
 using GoRogue.Random;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Troschuetz.Random;
 
@@ -11,6 +10,7 @@ namespace GoRogue.MapGeneration.Connectors
 	/// <summary>
 	/// Opens up room walls to connect tunnels that are placed near rooms.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	static public class RoomDoorConnector
 	{
 		/// <summary>

@@ -1,13 +1,11 @@
 ﻿using GoRogue.MapViews;
-using System;
 
-namespace GoRogue.MapGeneration.Connectors
+namespace GoRogue.MapGeneration.Connectors.New
 {
 	/// <summary>
 	/// Interface for implementing an algorithm for creating a tunnel between two positions on a
 	/// walkability map.
 	/// </summary>
-	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public interface ITunnelCreator
 	{
 		/// <summary>

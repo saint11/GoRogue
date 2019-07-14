@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace GoRogue.MapGeneration.Connectors
+namespace GoRogue.MapGeneration.Connectors.New
 {
+#pragma warning disable 0618
 	/// <summary>
 	/// Interface for implementing an algorithm for selecting the positions to connect in order to
 	/// connect two given map areas.
 	/// </summary>
-	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public interface IAreaConnectionPointSelector
 	{
 		/// <summary>
@@ -22,4 +22,5 @@ namespace GoRogue.MapGeneration.Connectors
 		/// </returns>
 		Tuple<Coord, Coord> SelectConnectionPoints(IReadOnlyMapArea area1, IReadOnlyMapArea area2);
 	}
+	#pragma warning restore 0618
 }

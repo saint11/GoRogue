@@ -8,6 +8,7 @@ namespace GoRogue.MapGeneration.Connectors
 	/// Implements a the selection algorithm that simply selects random points from the given
 	/// areas' positions lists, using the RNG specified, or the default rng if null is given.
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public class RandomConnectionPointSelector : IAreaConnectionPointSelector
 	{
 		private IGenerator rng;

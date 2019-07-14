@@ -9,6 +9,7 @@ namespace GoRogue.MapGeneration.Connectors
 	/// Implements a tunnel creation algorithm that creates a tunnel that performs all needed
 	/// vertical movement before horizontal movement, or vice versa (depending on rng).
 	/// </summary>
+	[Obsolete("All items originally in the MapGeneration namespace have been deprecated; use items in MapGeneration.New instead.")]
 	public class HorizontalVerticalTunnelCreator : ITunnelCreator
 	{
 		private IGenerator rng;
