@@ -4,6 +4,7 @@ using GoRogue.Random;
 using Troschuetz.Random;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using SadRogue.Primitives;
 
 namespace GoRogue.MapGeneration.Connectors
 {
@@ -19,7 +20,7 @@ namespace GoRogue.MapGeneration.Connectors
 		/// <param name="saveDeadEndChance">The chance out of 100 that a given dead end is left alone. Defaults to 0.</param>
 		/// <param name="rng">Rng to use.  Defaults to <see cref="SingletonRandom.DefaultRNG"/>.</param>
 		public static void Trim(ISettableMapView<bool> map, int saveDeadEndChance = 0, IGenerator rng = null)
-			=> Trim(map, MapAreaFinder.MapAreasFor(map, AdjacencyRule.CARDINALS), saveDeadEndChance, rng);
+			=> Trim(map, MapAreaFinder.MapAreasFor(map, AdjacencyRule.Cardinals), saveDeadEndChance, rng);
 
 		/// <summary>
 		/// Trims current small dead-end paths from the given list of map areas, and removes them from the given map.
@@ -28,22 +29,22 @@ namespace GoRogue.MapGeneration.Connectors
 		/// <param name="areas">Map areas to check for dead ends.  Dead ends not contained as one of these map areas will be ignored.</param>
 		/// <param name="saveDeadEndChance">The chance out of 100 that a given dead end is left alone. Defaults to 0.</param>
 		/// <param name="rng">Rng to use.  Defaults to <see cref="SingletonRandom.DefaultRNG"/>.</param>
-		public static void Trim(ISettableMapView<bool> map, IEnumerable<MapArea> areas, int saveDeadEndChance = 100, IGenerator rng = null)
+		public static void Trim(ISettableMapView<bool> map, IEnumerable<Area> areas, int saveDeadEndChance = 100, IGenerator rng = null)
 		{
 			if (rng == null)
 				rng = SingletonRandom.DefaultRNG;
 
 			foreach (var area in areas)
 			{
-				HashSet<Coord> safeDeadEnds = new HashSet<Coord>();
-				HashSet<Coord> deadEnds = new HashSet<Coord>();
+				HashSet<Point> safeDeadEnds = new HashSet<Point>();
+				HashSet<Point> deadEnds = new HashSet<Point>();
 
 				while (true)
 				{
 					foreach (var point in area.Positions)
 					{
-						var points = AdjacencyRule.EIGHT_WAY.NeighborsClockwise(point).ToArray();
-						var directions = AdjacencyRule.EIGHT_WAY.DirectionsOfNeighborsClockwise(Direction.NONE).ToList();
+						var points = AdjacencyRule.EightWay.NeighborsClockwise(point).ToArray();
+						var directions = AdjacencyRule.EightWay.DirectionsOfNeighborsClockwise(Direction.None).ToList();
 
 						for (int i = 0; i < 8; i += 2)
 						{
@@ -60,32 +61,32 @@ namespace GoRogue.MapGeneration.Connectors
 									{
 										// Check for a wall pattern in the map. In this case
 										// something like where X is a wall XXX X X
-										case Direction.Types.UP:
-											found = !map[points[(int)Direction.Types.UP_LEFT]] &&
-													!map[points[(int)Direction.Types.UP_RIGHT]] &&
-													!map[points[(int)Direction.Types.LEFT]] &&
-													!map[points[(int)Direction.Types.RIGHT]];
+										case Direction.Types.Up:
+											found = !map[points[(int)Direction.Types.UpLeft]] &&
+													!map[points[(int)Direction.Types.UpRight]] &&
+													!map[points[(int)Direction.Types.Left]] &&
+													!map[points[(int)Direction.Types.Right]];
 											break;
 
-										case Direction.Types.DOWN:
-											found = !map[points[(int)Direction.Types.DOWN_LEFT]] &&
-													!map[points[(int)Direction.Types.DOWN_RIGHT]] &&
-													!map[points[(int)Direction.Types.LEFT]] &&
-													!map[points[(int)Direction.Types.RIGHT]];
+										case Direction.Types.Down:
+											found = !map[points[(int)Direction.Types.DownLeft]] &&
+													!map[points[(int)Direction.Types.DownRight]] &&
+													!map[points[(int)Direction.Types.Left]] &&
+													!map[points[(int)Direction.Types.Right]];
 											break;
 
-										case Direction.Types.RIGHT:
-											found = !map[points[(int)Direction.Types.UP_RIGHT]] &&
-													!map[points[(int)Direction.Types.DOWN_RIGHT]] &&
-													!map[points[(int)Direction.Types.UP]] &&
-													!map[points[(int)Direction.Types.DOWN]];
+										case Direction.Types.Right:
+											found = !map[points[(int)Direction.Types.UpRight]] &&
+													!map[points[(int)Direction.Types.DownRight]] &&
+													!map[points[(int)Direction.Types.Up]] &&
+													!map[points[(int)Direction.Types.Down]];
 											break;
 
-										case Direction.Types.LEFT:
-											found = !map[points[(int)Direction.Types.UP_LEFT]] &&
-													!map[points[(int)Direction.Types.DOWN_LEFT]] &&
-													!map[points[(int)Direction.Types.UP]] &&
-													!map[points[(int)Direction.Types.DOWN]];
+										case Direction.Types.Left:
+											found = !map[points[(int)Direction.Types.UpLeft]] &&
+													!map[points[(int)Direction.Types.DownLeft]] &&
+													!map[points[(int)Direction.Types.Up]] &&
+													!map[points[(int)Direction.Types.Down]];
 											break;
 									}
 								}

@@ -3,6 +3,7 @@ using GoRogue.Random;
 using System.Collections.Generic;
 using System.Linq;
 using Troschuetz.Random;
+using SadRogue.Primitives;
 
 namespace GoRogue.MapGeneration
 {
@@ -25,7 +26,7 @@ namespace GoRogue.MapGeneration
 		/// <param name="totalIterations"></param>
 		/// <param name="cutoffBigAreaFill"></param>
 		/// <returns>Collection of areas representing the areas of the map before they were connected.</returns>
-		public static IEnumerable<MapArea> GenerateCellularAutomataMap(ISettableMapView<bool> map, IGenerator rng = null, int fillProbability = 40,
+		public static IEnumerable<Area> GenerateCellularAutomataMap(ISettableMapView<bool> map, IGenerator rng = null, int fillProbability = 40,
 																	   int totalIterations = 7, int cutoffBigAreaFill = 4)
 		{
 			if (rng == null) rng = SingletonRandom.DefaultRNG;
@@ -42,10 +43,10 @@ namespace GoRogue.MapGeneration
 			// Generate map
 			Generators.CellularAutomataAreaGenerator.Generate(tempMap, rng, fillProbability, totalIterations, cutoffBigAreaFill);
 			// Calculate connected areas and store before we connect different rooms
-			var areas = MapAreaFinder.MapAreasFor(tempMap, AdjacencyRule.CARDINALS).ToList();
+			var areas = MapAreaFinder.MapAreasFor(tempMap, AdjacencyRule.Cardinals).ToList();
 
 			// Connect randomly
-			Connectors.ClosestMapAreaConnector.Connect(tempMap, Distance.MANHATTAN, new Connectors.RandomConnectionPointSelector(rng));
+			Connectors.ClosestMapAreaConnector.Connect(tempMap, Distance.Manhattan, new Connectors.RandomConnectionPointSelector(rng));
 
 			if (!wasArrayMap)
 				map.ApplyOverlay(tempMap);
@@ -105,7 +106,7 @@ namespace GoRogue.MapGeneration
 		/// time a door is placed (per room) during the connection process. Defaults to 10.
 		/// </param>
 		/// <returns>A list of the interior of rooms generated, and the connections placed.</returns>
-		public static IEnumerable<(Rectangle Room, Coord[][] Connections)> GenerateDungeonMazeMap(ISettableMapView<bool> map, int minRooms,
+		public static IEnumerable<(Rectangle Room, Point[][] Connections)> GenerateDungeonMazeMap(ISettableMapView<bool> map, int minRooms,
 			int maxRooms, int roomMinSize, int roomMaxSize, float roomSizeRatioX = 1f, float roomSizeRatioY = 1f, int maxCreationAttempts = 10,
 			int maxPlacementAttempts = 10, int crawlerChangeDirectionImprovement = 10, int saveDeadEndChance = 0, int minSidesToConnect = 1, int maxSidesToConnect = 4,
 			int cancelSideConnectionSelectChance = 50, int cancelConnectionPlacementChance = 70, int cancelConnectionPlacementChanceIncrease = 10)
@@ -166,7 +167,7 @@ namespace GoRogue.MapGeneration
 		/// indicates the chance out of 100 that a given dead end remains. Defaults to 0.
 		/// </param>
 		/// <returns>A list of the interior of rooms generated and the connections placed.</returns>
-		public static IEnumerable<(Rectangle Room, Coord[][] Connections)> GenerateDungeonMazeMap(ISettableMapView<bool> map, IGenerator rng, int minRooms,
+		public static IEnumerable<(Rectangle Room, Point[][] Connections)> GenerateDungeonMazeMap(ISettableMapView<bool> map, IGenerator rng, int minRooms,
 			int maxRooms, int roomMinSize, int roomMaxSize, float roomSizeRatioX = 1f, float roomSizeRatioY = 1f, int maxCreationAttempts = 10, int maxPlacementAttempts = 10,
 			int crawlerChangeDirectionImprovement = 10, int minSidesToConnect = 1, int maxSidesToConnect = 4, int cancelSideConnectionSelectChance = 50,
 			int cancelConnectionPlacementChance = 70, int cancelConnectionPlacementChanceIncrease = 10, int saveDeadEndChance = 0)
@@ -186,7 +187,7 @@ namespace GoRogue.MapGeneration
 			// Generate maze
 			var mazes = Generators.MazeGenerator.Generate(tempMap, rng, crawlerChangeDirectionImprovement).ToList();
 			// Connect random points in each maze to the next closest one, with a horizontal-vertical tunnel, so we have 1 maze
-			Connectors.ClosestMapAreaConnector.Connect(map, mazes, Distance.MANHATTAN, areaConnector: new Connectors.ClosestConnectionPointSelector(Distance.MANHATTAN), tunnelCreator: new Connectors.HorizontalVerticalTunnelCreator(rng));
+			Connectors.ClosestMapAreaConnector.Connect(map, mazes, Distance.Manhattan, areaConnector: new Connectors.ClosestConnectionPointSelector(Distance.Manhattan), tunnelCreator: new Connectors.HorizontalVerticalTunnelCreator(rng));
 
 			// Connect rooms to maze
 			var connectionResult = Connectors.RoomDoorConnector.ConnectRooms(tempMap, rng, mapRooms, minSidesToConnect, maxSidesToConnect,
@@ -253,7 +254,7 @@ namespace GoRogue.MapGeneration
 
 			// Generate map
 			var rooms = Generators.BasicRoomsGenerator.Generate(tempMap, rng, maxRooms, roomMinSize, roomMaxSize, attemptsPerRoom);
-			Connectors.OrderedMapAreaConnector.Connect(tempMap, AdjacencyRule.CARDINALS, new Connectors.CenterBoundsConnectionPointSelector(), rng: rng);
+			Connectors.OrderedMapAreaConnector.Connect(tempMap, AdjacencyRule.Cardinals, new Connectors.CenterBoundsConnectionPointSelector(), rng: rng);
 
 			if (!wasArrayMap)
 				map.ApplyOverlay(tempMap);
